@@ -1,3 +1,6 @@
 *.class
 *.log
 target/
+
+.g8/
+.idea/

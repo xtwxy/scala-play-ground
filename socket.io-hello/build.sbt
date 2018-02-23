@@ -9,6 +9,7 @@ scalaVersion := "2.12.3"
 
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
+libraryDependencies += "com.lightbend.play" %% "play-socket-io" % "1.0.0-beta-2"
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.github.xtwxy.scala.playground.controllers._"

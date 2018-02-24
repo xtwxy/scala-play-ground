@@ -47,6 +47,12 @@ object Main extends App {
       Tweet(Author("drama"), System.currentTimeMillis, "we compared #apples to #oranges!") ::
       Nil)
 
+
+  def lineSink(filename: String): Sink[String, Future[IOResult]] =
+    Flow[String]
+      .map(s ⇒ ByteString(s + "\n"))
+      .toMat(FileIO.toPath(Paths.get(filename)))(Keep.right)
+  
   val done = tweets
     .map(_.hashtags) // Get all sets of hashtags ...
     .reduce(_ ++ _) // ... and reduce them to a single set, removing duplicates across all tweets

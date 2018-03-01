@@ -7,22 +7,35 @@ import akka.japi.pf.ReceiveBuilder;
 import static java.lang.System.out;
 
 public class JavaReceive {
-    public static AbstractActor.Receive create(Actor self) {
+    private final AbstractActor.Receive hello;
+    private final AbstractActor.Receive world;
+
+    public JavaReceive(Actor self) {
+        this.hello = hello(self);
+        this.world = world(self);
+    }
+
+    public AbstractActor.Receive initial() {
+        return hello;
+    }
+
+    private AbstractActor.Receive hello(Actor self) {
         return ReceiveBuilder.create()
                 .matchEquals("hello", s -> {
                     out.println("initial => hello.");
-                    self.context().become(hello(self).onMessage(), true);
+                    self.context().become(world.onMessage(), true);
                     self.sender().tell("world", self.self());
                 })
                 .matchAny(o -> out.println(o.toString()))
                 .build();
     }
 
-    public static AbstractActor.Receive hello(Actor self) {
+    private AbstractActor.Receive world(Actor self) {
         return ReceiveBuilder.create()
                 .matchAny(o -> {
                     out.println("initial <= hello.");
-                    self.context().unbecome();
+                    //self.context().unbecome();
+                    self.context().become(hello.onMessage(), true);
                     self.sender().tell("hello", self.self());
                 })
                 .build();

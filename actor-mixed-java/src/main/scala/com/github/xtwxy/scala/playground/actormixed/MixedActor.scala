@@ -3,7 +3,7 @@ package com.github.xtwxy.scala.playground.actormixed
 import akka.actor.{AbstractActor, Actor}
 
 class MixedActor extends Actor {
-  val javaReceive: AbstractActor.Receive = JavaReceive.create(this)
+  val javaReceive: AbstractActor.Receive = new JavaReceive(this).initial()
 
   override def preStart(): Unit = {
     super.preStart()

@@ -1,4 +1,4 @@
-package com.github.xtwxy.scala.playground.stream.tweet
+package com.github.xtwxy.scala.playground.stream.wordcount
 
 
 import java.nio.file.Paths

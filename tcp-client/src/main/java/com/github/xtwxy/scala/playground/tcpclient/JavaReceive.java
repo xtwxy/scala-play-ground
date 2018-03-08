@@ -7,7 +7,6 @@ import akka.io.Tcp;
 import akka.io.TcpMessage;
 import akka.japi.pf.ReceiveBuilder;
 import akka.util.ByteString;
-import akka.util.CompactByteString;
 
 import java.net.InetSocketAddress;
 

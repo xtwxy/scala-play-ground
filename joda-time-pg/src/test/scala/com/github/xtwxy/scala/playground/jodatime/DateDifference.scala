@@ -1,7 +1,7 @@
 package example
 
-import org.scalatest._
 import org.joda.time._
+import org.scalatest._
 
 class DateDifference extends FlatSpec with Matchers {
   "The Days object" should "tell days between" in {

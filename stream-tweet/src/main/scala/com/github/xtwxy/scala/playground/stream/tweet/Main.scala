@@ -3,19 +3,13 @@ package com.github.xtwxy.scala.playground.stream.tweet
 
 import java.nio.file.Paths
 
-import akka.actor.ActorSystem
-import akka.stream._
-import akka.stream.scaladsl._
-import akka.util.ByteString
-import akka.{Done, NotUsed}
-
-import scala.collection.immutable.Seq
-import scala.concurrent._
-
 import akka.NotUsed
 import akka.actor.ActorSystem
-import akka.stream.ActorMaterializer
+import akka.stream.{ActorMaterializer, _}
 import akka.stream.scaladsl._
+import akka.util.ByteString
+
+import scala.concurrent._
 
 
 object Main extends App {

@@ -1,17 +1,6 @@
 package com.github.xtwxy.scala.playground.stream.wordcount
 
 
-import java.nio.file.Paths
-
-import akka.actor.ActorSystem
-import akka.stream._
-import akka.stream.scaladsl._
-import akka.util.ByteString
-import akka.{Done, NotUsed}
-
-import scala.collection.immutable.Seq
-import scala.concurrent._
-
 import akka.NotUsed
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
@@ -34,7 +23,10 @@ object Main extends App {
     // get a stream of word counts
     .mergeSubstreams
 
-  val done = counts.runForeach(x => println(s"${x._1} => ${x._2}"))
+  val countsMat = counts.toMat(Sink.foreach(x => println(s"${x._1} => ${x._2}")))(Keep.right)
+  val done = countsMat.run()
+
+  // val done = counts.runForeach(x => println(s"${x._1} => ${x._2}"))
 
   implicit val ec = system.dispatcher
   done.onComplete(_ ⇒ system.terminate())

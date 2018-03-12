@@ -1,7 +1,8 @@
 # Database Schema
 Table schema for RESPONSE_TYPE:
+
 | Field     | Type        | Null | Key | Default | Extra |
-|-----------|-------------|------|-----|---------|-------|
+|:----------|:------------|:-----|:---:|:--------|:------|
 | resp_code | int(11)     | NO   | PRI | NULL    |       |
 | resp_name | varchar(64) | NO   |     | NULL    |       |
 

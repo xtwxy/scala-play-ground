@@ -1,8 +1,7 @@
 # dbschema
 
-+-----------+------------------------+
 | resp_code | resp_name              |
-+-----------+------------------------+
+|----------:|:-----------------------|
 |         0 | SUCCESS                |
 |         1 | NOT_EXIST              |
 |         2 | ALREADY_EXISTS         |
@@ -13,5 +12,4 @@
 |         7 | CONNECTION_ESTABLISHED |
 |         8 | CONNECTION_CLOSED      |
 |         9 | DECODE_RESPONSE_FAILED |
-+-----------+------------------------+
 

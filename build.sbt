@@ -16,6 +16,7 @@ lazy val root = (project in file("."))
       socketio_hello,
       stream_quickstart,
       stream_tweet,
+      simple_xml,
       word_count
   )
 
@@ -27,5 +28,6 @@ lazy val socketio_hello    = (project in file("socket.io-hello"))
   .enablePlugins(PlayScala)
 lazy val stream_quickstart = (project in file("stream-quickstart"))
 lazy val stream_tweet      = (project in file("stream-tweet"))
+lazy val simple_xml        = (project in file("simple-xml"))
 lazy val word_count        = (project in file("word-count"))
 

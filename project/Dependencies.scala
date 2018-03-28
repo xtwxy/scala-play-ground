@@ -6,6 +6,7 @@ object Dependencies {
   lazy val groupName             = "com.github.xtwxy.scala.playground"
   lazy val artifactVersionNumber = "1.0.0"
 
+  lazy val scalaXml        = "org.scala-lang.modules"    %%  "scala-xml"                           % "1.0.6"
   lazy val akkaActor       = "com.typesafe.akka"         %%  "akka-actor"                          % akkaVersion
   lazy val akkaStream      = "com.typesafe.akka"         %%  "akka-stream"                         % akkaVersion
   lazy val akkaPersistence = "com.typesafe.akka"         %%  "akka-persistence"                    % akkaVersion

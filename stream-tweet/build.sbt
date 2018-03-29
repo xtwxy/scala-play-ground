@@ -1,7 +1,7 @@
 import Dependencies._
 import sbtassembly.MergeStrategy
 
-name         := "driver-core"
+name         := "stream-tweet"
 scalaVersion := scalaVersionNumber
 organization := groupName
 version      := artifactVersionNumber

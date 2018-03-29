@@ -1,14 +1,14 @@
 import Dependencies._
 import sbtassembly.MergeStrategy
 
-name         := "stream-quickstart"
+name         := "cluster-event"
 scalaVersion := scalaVersionNumber
 organization := groupName
 version      := artifactVersionNumber
 
 libraryDependencies ++= {
   Seq(
-    akkaStream,
+    akkaCluster,
     scalaTest      % Test
   )
 }
@@ -21,6 +21,6 @@ assemblyMergeStrategy in assembly := {
     oldStrategy(x)
 }
 
-mainClass in assembly := Some("com.github.xtwxy.scala.playground.stream.quickstart.Main")
-assemblyJarName in assembly := "stream-quickstart.jar"
+mainClass in assembly := Some("com.github.xtwxy.scala.playground.clusterevent.Main")
+assemblyJarName in assembly := "cluster-event.jar"
 

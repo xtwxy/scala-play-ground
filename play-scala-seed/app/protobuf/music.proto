@@ -1,0 +1,58 @@
+syntax = "proto2";
+import "scalapb/scalapb.proto";
+option(scalapb.options) = {
+    flat_package: true
+};
+
+package com.github.xtwxy.music;
+
+enum MusicType {
+    option(scalapb.enum_options).extends = "com.github.xtwxy.music.ValueObject";
+    CLASSIC = 0;
+    JAZZ = 1;
+    POPULAR = 2;
+    NEW_AGE = 3;
+};
+
+message MusicVo {
+    option(scalapb.message).extends = "com.github.xtwxy.music.ValueObject";
+    required int64 musicId = 1;
+    optional string musicName = 2;
+    optional string composer = 3;
+    optional MusicType musicType = 4;
+};
+
+message Parent {
+    extensions 2 to max;
+    optional int32 common = 1;
+};
+
+message Derived1 {
+    extend Parent {
+        optional string extended = 2;
+    }
+    optional string name = 1;
+};
+
+message Derived2 {
+    extend Parent {
+        optional string extended = 3;
+    }
+    optional string name = 1;
+};
+
+message FirstChild {
+    required string title = 1;
+};
+    
+message SecondChild {
+    required string caption = 1;
+};
+
+message Child {
+    required string id = 1;
+    oneof children {
+        FirstChild bob = 2;
+        SecondChild alice = 3;
+    }
+}

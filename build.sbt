@@ -9,15 +9,18 @@ resolvers ++= dependedRepos
 
 lazy val root = (project in file("."))
   .aggregate(
-      jodatime,
-      actor_mixed_java,
-      tcp_client,
-      tcp_server,
-      socketio_hello,
-      stream_quickstart,
-      stream_tweet,
-      simple_xml,
-      word_count
+    jodatime,
+    actor_mixed_java,
+    tcp_client,
+    tcp_server,
+    socketio_hello,
+    stream_quickstart,
+    stream_tweet,
+    simple_xml,
+    word_count,
+    play_scala_starter,
+    play_java_seed,
+    play_scala_seed
   )
 
 lazy val jodatime          = (project in file("joda-time-pg"))
@@ -30,4 +33,12 @@ lazy val stream_quickstart = (project in file("stream-quickstart"))
 lazy val stream_tweet      = (project in file("stream-tweet"))
 lazy val simple_xml        = (project in file("simple-xml"))
 lazy val word_count        = (project in file("word-count"))
+//lazy val scala_native_hello= (project in file("scala-native-hello"))
+lazy val play_scala_starter= (project in file("play-scala-starter-example"))
+  .enablePlugins(PlayScala)
+
+lazy val play_java_seed    = (project in file("play-java-seed"))
+  .enablePlugins(PlayJava)
+lazy val play_scala_seed   = (project in file("play-scala-seed"))
+  .enablePlugins(PlayScala, PlayAkkaHttp2Support)
 

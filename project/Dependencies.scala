@@ -16,6 +16,7 @@ object Dependencies {
   lazy val akkaMultiNodeTestKit = "com.typesafe.akka"         %%  "akka-multi-node-testkit"             % akkaVersion
   lazy val reflections     = "org.reflections"           %   "reflections"                         % "0.9.11"
   lazy val jodaTime        = "joda-time"                 %   "joda-time"                           % "2.9.9"
+  lazy val h2              = "com.h2database"            %   "h2"                                  % "1.4.196"
 
   lazy val logback         = "ch.qos.logback"            %   "logback-classic"                     % "1.2.3"
   lazy val scalaTest       = "org.scalatest"             %% "scalatest"                            % "3.0.4"

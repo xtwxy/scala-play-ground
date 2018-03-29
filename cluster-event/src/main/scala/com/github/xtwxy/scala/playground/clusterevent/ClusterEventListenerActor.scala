@@ -25,6 +25,6 @@ class ClusterEventListenerActor extends Actor with ActorLogging {
       log.info(
         "Member is Removed: {} after {}",
         member.address, previousStatus)
-    case _: MemberEvent ⇒ // ignore
+    case x: MemberEvent ⇒ log.info(s"Other Event: ${x}")// ignore
   }
 }

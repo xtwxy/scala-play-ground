@@ -9,6 +9,7 @@ version      := artifactVersionNumber
 libraryDependencies ++= {
   Seq(
     akkaCluster,
+    akkaClusterMetrics,
     scalaTest      % Test
   )
 }

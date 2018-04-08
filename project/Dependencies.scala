@@ -9,6 +9,7 @@ object Dependencies {
   lazy val scalaXml        = "org.scala-lang.modules"    %%  "scala-xml"                           % "1.0.6"
   lazy val akkaActor       = "com.typesafe.akka"         %%  "akka-actor"                          % akkaVersion
   lazy val akkaStream      = "com.typesafe.akka"         %%  "akka-stream"                         % akkaVersion
+  lazy val akkaStreamCassandra = "com.typesafe.akka"     %%  "akka-stream-alpakka-cassandra"       % "21d5ff44+20161107-1338"
   lazy val akkaPersistence = "com.typesafe.akka"         %%  "akka-persistence"                    % akkaVersion
   lazy val akkaCluster     = "com.typesafe.akka"         %%  "akka-cluster"                        % akkaVersion
   lazy val akkaClusterMetrics = "com.typesafe.akka"         %%  "akka-cluster-metrics"                        % akkaVersion

@@ -15,6 +15,7 @@ lazy val root = (project in file("."))
     tcp_client,
     tcp_server,
     socketio_hello,
+    stream_actor,
     stream_quickstart,
     stream_tweet,
     simple_xml,
@@ -31,6 +32,7 @@ lazy val tcp_client        = (project in file("tcp-client"))
 lazy val tcp_server        = (project in file("tcp-server"))
 lazy val socketio_hello    = (project in file("socket.io-hello"))
   .enablePlugins(PlayScala)
+lazy val stream_actor      = (project in file("stream-actor"))
 lazy val stream_quickstart = (project in file("stream-quickstart"))
 lazy val stream_tweet      = (project in file("stream-tweet"))
 lazy val simple_xml        = (project in file("simple-xml"))

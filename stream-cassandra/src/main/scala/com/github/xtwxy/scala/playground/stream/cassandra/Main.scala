@@ -7,9 +7,6 @@ import akka.stream.alpakka.cassandra.scaladsl._
 import akka.stream.scaladsl._
 import com.datastax.driver.core.{Cluster, PreparedStatement}
 
-import scala.concurrent.Await
-import scala.concurrent.duration.Duration
-
 object Main extends App {
   implicit val system = ActorSystem("Cassandra")
   implicit val dispatcher = system.dispatcher

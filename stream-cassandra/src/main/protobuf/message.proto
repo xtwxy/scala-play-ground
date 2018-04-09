@@ -1,0 +1,30 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+import "scalapb/scalapb.proto";
+
+option (scalapb.options) = {
+  package_name: "publish.message"
+  flat_package: true
+};
+
+enum SignalType {
+    AI = 0;
+    DI = 1;
+    SI = 2;
+    A0 = 3;
+    D0 = 4;
+    S0 = 5;
+};
+
+message SignalValue {
+    SignalType signalType = 1;
+    double analogValue = 2;
+    double booleanValue = 3;
+    double stringValue = 4;
+};
+
+message SignalValueLog {
+    string id = 1;
+    google.protobuf.Timestamp ts = 2;
+    SignalValue value = 3;
+};

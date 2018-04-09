@@ -10,12 +10,17 @@ libraryDependencies ++= {
   Seq(
     akkaStream,
     akkaStreamCassandra,
+    scalapbCompiler,
+    scalapbRuntime % "protobuf",
     slf4jApi,
     slf4jSimple,
     scalaTest      % Test
   )
 }
 
+PB.targets in Compile := Seq(
+  scalapb.gen() -> (sourceManaged in Compile).value
+)
 
 assemblyMergeStrategy in assembly := {
   case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.rename

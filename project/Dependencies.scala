@@ -1,4 +1,5 @@
 import sbt._
+import com.trueaccord.scalapb.compiler.Version.scalapbVersion
 
 object Dependencies {
   lazy val scalaVersionNumber    = "2.12.3"
@@ -19,6 +20,8 @@ object Dependencies {
   lazy val reflections     = "org.reflections"           %   "reflections"                         % "0.9.11"
   lazy val jodaTime        = "joda-time"                 %   "joda-time"                           % "2.9.9"
   lazy val h2              = "com.h2database"            %   "h2"                                  % "1.4.196"
+  lazy val scalapbCompiler = "com.trueaccord.scalapb"    %% "compilerplugin"                       % scalapbVersion
+  lazy val scalapbRuntime  = "com.trueaccord.scalapb"    %% "scalapb-runtime"                      % scalapbVersion
 
   lazy val slf4jApi        = "org.slf4j"                 %  "slf4j-api"                            % "1.7.25"
   lazy val slf4jSimple     = "org.slf4j"                 %  "slf4j-simple"                         % "1.7.25"

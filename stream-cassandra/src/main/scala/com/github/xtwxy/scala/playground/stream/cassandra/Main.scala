@@ -15,9 +15,12 @@ object Main extends App {
   implicit val dispatcher = system.dispatcher
   implicit val materializer = ActorMaterializer()
 
-  implicit val session = Cluster.builder
-    .addContactPoint("127.0.0.1").withPort(9042)
-    .build.connect()
+  val cluster: Cluster = Cluster.builder
+    .addContactPoint("127.0.0.1")
+    .withPort(9042)
+    .build()
+
+  implicit val session = cluster.connect()
 
   val source: Source[Integer, SourceQueueWithComplete[Integer]] = Source.queue[Integer](1000, OverflowStrategy.dropNew)
 
@@ -32,7 +35,7 @@ object Main extends App {
 
   result.onComplete(_ ⇒ {
     session.close()
+    cluster.close()
     system.terminate()
-    System.exit(0)    // terminate by force... ^_^
   })
 }

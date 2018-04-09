@@ -10,6 +10,8 @@ libraryDependencies ++= {
   Seq(
     akkaStream,
     akkaStreamCassandra,
+    slf4jApi,
+    slf4jSimple,
     scalaTest      % Test
   )
 }

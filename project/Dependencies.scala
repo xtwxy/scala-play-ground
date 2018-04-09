@@ -20,7 +20,9 @@ object Dependencies {
   lazy val jodaTime        = "joda-time"                 %   "joda-time"                           % "2.9.9"
   lazy val h2              = "com.h2database"            %   "h2"                                  % "1.4.196"
 
-  lazy val logback         = "ch.qos.logback"            %   "logback-classic"                     % "1.2.3"
+  lazy val slf4jApi        = "org.slf4j"                 %  "slf4j-api"                            % "1.7.25"
+  lazy val slf4jSimple     = "org.slf4j"                 %  "slf4j-simple"                         % "1.7.25"
+  lazy val logbackClassic  = "ch.qos.logback"            %   "logback-classic"                     % "1.2.3"
   lazy val scalaTest       = "org.scalatest"             %% "scalatest"                            % "3.0.4"
   lazy val scalaTesplusPlay= "org.scalatestplus.play"    %%  "scalatestplus-play"                  % "3.1.2"
   lazy val guava           = "com.google.guava"          %   "guava"                               % "22.0"

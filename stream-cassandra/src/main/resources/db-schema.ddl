@@ -5,8 +5,8 @@ WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}
 USE stream;
 
 CREATE TABLE signal_value_log(
-    id int,
+    id varchar,
     ts timestamp,
-    value blob,
-    primary key(id)
+    v blob,
+    primary key(id, ts)
 );

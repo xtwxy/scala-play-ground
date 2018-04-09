@@ -19,8 +19,8 @@ enum SignalType {
 message SignalValue {
     SignalType signalType = 1;
     double analogValue = 2;
-    double booleanValue = 3;
-    double stringValue = 4;
+    bool booleanValue = 3;
+    string stringValue = 4;
 };
 
 message SignalValueLog {

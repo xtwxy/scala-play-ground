@@ -1,5 +1,6 @@
 *.class
 *.log
+factorials.txt
 target/
 
 .g8/

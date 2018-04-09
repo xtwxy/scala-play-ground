@@ -3,7 +3,7 @@ import "google/protobuf/timestamp.proto";
 import "scalapb/scalapb.proto";
 
 option (scalapb.options) = {
-  package_name: "publish.message"
+  package_name: "com.github.xtwxy.scala.playground.stream.cassandra"
   flat_package: true
 };
 

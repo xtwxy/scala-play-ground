@@ -2,7 +2,7 @@
 
 # using of `Source.actorRef` is not recommended
 
-All the problems that can be solved by `Source.actorRef`
+All problems that can be solved by `Source.actorRef`
 can also be solved by `Source.queue`.
 
 There are stream completion problem in `Source.actorRef`.

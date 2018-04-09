@@ -10,16 +10,16 @@ object SignalValueCodec {
 }
 
 class SignalValueCodec extends TypeCodec[SignalValue](DataType.blob(), classOf[SignalValue]) {
-  override def format(value: SignalValue): String = TextFormat.printToString(value)
+  override def format(value: SignalValue): String = {
+    TextFormat.printToString(value)
+  }
 
-  override def parse(value: String): SignalValue = TextFormat.fromAscii[SignalValue](SignalValue, value).right.get
+  override def parse(value: String): SignalValue = {
+    TextFormat.fromAscii[SignalValue](SignalValue, value).right.get
+  }
 
   override def serialize(value: SignalValue, protocolVersion: ProtocolVersion): ByteBuffer = {
-    val bytes = value.toByteArray
-    val buffer = ByteBuffer.allocate(bytes.length)
-    buffer.put(bytes)
-    buffer.flip()
-    buffer
+    ByteBuffer.wrap(value.toByteArray)
   }
 
   override def deserialize(bytes: ByteBuffer, protocolVersion: ProtocolVersion): SignalValue = {

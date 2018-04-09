@@ -15,7 +15,8 @@ object Main extends App {
   implicit val dispatcher = system.dispatcher
   implicit val materializer = ActorMaterializer()
 
-  val cluster: Cluster = Cluster.builder
+  val cluster: Cluster = Cluster
+    .builder()
     .addContactPoint("127.0.0.1")
     .withPort(9042)
     .build()

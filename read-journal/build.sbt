@@ -1,15 +1,19 @@
 import Dependencies._
 import sbtassembly.MergeStrategy
 
-name         := "stream-cassandra"
+name         := "read-journal"
 scalaVersion := scalaVersionNumber
 organization := groupName
 version      := artifactVersionNumber
 
 libraryDependencies ++= {
   Seq(
-    akkaStream,
-    akkaStreamCassandra,
+    akkaCluster,
+    akkaClusterTools,
+    akkaPersistence,
+    akkaPersistenceQuery,
+    leveldb,
+    leveldbjniAll,
     scalapbCompiler,
     scalapbRuntime % "protobuf",
     slf4jApi,
@@ -29,6 +33,6 @@ assemblyMergeStrategy in assembly := {
     oldStrategy(x)
 }
 
-mainClass in assembly := Some("com.github.xtwxy.scala.playground.stream.cassandra.Main")
-assemblyJarName in assembly := s"${name}.jar"
+mainClass in assembly := Some("com.github.xtwxy.scala.playground.journal.read.Main")
+assemblyJarName in assembly := s"${name.value}.jar"
 

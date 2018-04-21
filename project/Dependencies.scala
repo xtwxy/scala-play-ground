@@ -12,11 +12,15 @@ object Dependencies {
   lazy val akkaStream      = "com.typesafe.akka"         %%  "akka-stream"                         % akkaVersion
   lazy val akkaStreamCassandra = "com.lightbend.akka"    %%  "akka-stream-alpakka-cassandra"       % "0.18"
   lazy val akkaPersistence = "com.typesafe.akka"         %%  "akka-persistence"                    % akkaVersion
+  lazy val akkaPersistenceQuery = "com.typesafe.akka"    %% "akka-persistence-query"               % akkaVersion
   lazy val akkaCluster     = "com.typesafe.akka"         %%  "akka-cluster"                        % akkaVersion
+  lazy val akkaClusterTools= "com.typesafe.akka"         %%  "akka-cluster-tools"                  % akkaVersion
   lazy val akkaClusterMetrics = "com.typesafe.akka"         %%  "akka-cluster-metrics"                        % akkaVersion
   lazy val akkaSlf4j       = "com.typesafe.akka"         %%  "akka-slf4j"                          % akkaVersion
   lazy val akkaTestkit     = "com.typesafe.akka"         %%  "akka-testkit"                        % akkaVersion
   lazy val akkaMultiNodeTestKit = "com.typesafe.akka"         %%  "akka-multi-node-testkit"             % akkaVersion
+  lazy val leveldb         = "org.iq80.leveldb"          % "leveldb"                               % "0.7"
+  lazy val leveldbjniAll   = "org.fusesource.leveldbjni" % "leveldbjni-all"                        % "1.8"
   lazy val reflections     = "org.reflections"           %   "reflections"                         % "0.9.11"
   lazy val jodaTime        = "joda-time"                 %   "joda-time"                           % "2.9.9"
   lazy val h2              = "com.h2database"            %   "h2"                                  % "1.4.196"

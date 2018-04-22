@@ -22,5 +22,5 @@ assemblyMergeStrategy in assembly := {
 }
 
 mainClass in assembly := Some("com.github.xtwxy.scala.playground.stream.quickstart.Main")
-assemblyJarName in assembly := "stream-quickstart.jar"
+assemblyJarName in assembly := s"${name.value}.jar"
 

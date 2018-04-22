@@ -21,6 +21,6 @@ assemblyMergeStrategy in assembly := {
 }
 
 mainClass in assembly := Some("com.github.xtwxy.scala.playground.tcpserver.Main")
-assemblyJarName in assembly := "tcp-server.jar"
+assemblyJarName in assembly := s"${name.value}.jar"
 
 

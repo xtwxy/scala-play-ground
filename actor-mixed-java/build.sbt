@@ -21,6 +21,6 @@ assemblyMergeStrategy in assembly := {
 }
 
 mainClass in assembly := Some("com.github.xtwxy.scala.playground.actormixed.Main")
-assemblyJarName in assembly := "actor-mixed-java.jar"
+assemblyJarName in assembly := s"${name.value}.jar"
 
 

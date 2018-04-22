@@ -23,5 +23,5 @@ assemblyMergeStrategy in assembly := {
 }
 
 mainClass in assembly := Some("com.github.xtwxy.scala.playground.clusterevent.Main")
-assemblyJarName in assembly := "cluster-event.jar"
+assemblyJarName in assembly := s"${name.value}.jar"
 

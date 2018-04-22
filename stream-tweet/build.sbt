@@ -22,6 +22,6 @@ assemblyMergeStrategy in assembly := {
 }
 
 mainClass in assembly := Some("com.github.xtwxy.scala.playground.stream.tweet.Main")
-assemblyJarName in assembly := "stream-tweet.jar"
+assemblyJarName in assembly := s"${name.value}.jar"
 
 

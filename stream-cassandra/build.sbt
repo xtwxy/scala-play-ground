@@ -30,5 +30,5 @@ assemblyMergeStrategy in assembly := {
 }
 
 mainClass in assembly := Some("com.github.xtwxy.scala.playground.stream.cassandra.Main")
-assemblyJarName in assembly := s"${name}.jar"
+assemblyJarName in assembly := s"${name.value}.jar"
 

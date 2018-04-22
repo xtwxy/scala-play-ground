@@ -22,6 +22,6 @@ assemblyMergeStrategy in assembly := {
 }
 
 mainClass in assembly := Some("com.github.xtwxy.scala.playground.stream.wordcount.Main")
-assemblyJarName in assembly := "word-count.jar"
+assemblyJarName in assembly := s"${name.value}.jar"
 
 

@@ -30,7 +30,8 @@ object Main extends App {
     .mapTo[JournalEvents]
     .andThen({
       case Success(journalEvents) =>
-        println(journalEvents)
+        println("JournalEvents: {} total.", journalEvents.events.length)
+        journalEvents.events.foreach(println)
         system.terminate()
       case Failure(exception) =>
         println(exception)

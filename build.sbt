@@ -12,7 +12,8 @@ lazy val root = (project in file("."))
     jodatime,
     actor_mixed_java,
     cluster_event,
-    read_journal,
+    read_journal_cassandra,
+    read_journal_leveldb,
     tcp_client,
     tcp_server,
     socketio_hello,
@@ -31,7 +32,8 @@ lazy val root = (project in file("."))
 lazy val jodatime          = (project in file("joda-time-pg"))
 lazy val actor_mixed_java  = (project in file("actor-mixed-java"))
 lazy val cluster_event  = (project in file("cluster-event"))
-lazy val read_journal  = (project in file("read-journal"))
+lazy val read_journal_cassandra  = (project in file("read-journal-cassandra"))
+lazy val read_journal_leveldb  = (project in file("read-journal-leveldb"))
 lazy val tcp_client        = (project in file("tcp-client"))
 lazy val tcp_server        = (project in file("tcp-server"))
 lazy val socketio_hello    = (project in file("socket.io-hello"))

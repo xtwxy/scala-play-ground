@@ -7,9 +7,17 @@ option (scalapb.options) = {
   flat_package: true
 };
 
+message ReadJournalCommand {
+    string id = 1;
+    google.protobuf.Timestamp ts = 2;
+};
+
 message JournalEvent {
     string id = 1;
     google.protobuf.Timestamp ts = 2;
     int32 value = 3;
 };
 
+message JournalEvents {
+    repeated JournalEvent events = 1;
+};

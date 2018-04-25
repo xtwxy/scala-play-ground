@@ -1,7 +1,12 @@
 package com.github.xtwxy.scala.playground.journal.multiple
 
 import akka.actor._
+import akka.pattern._
 import akka.persistence._
+import akka.persistence.cassandra.query.scaladsl.CassandraReadJournal
+import akka.persistence.query._
+import akka.stream.ActorMaterializer
+import akka.stream.scaladsl._
 
 class ActorUsingFirstPlugin extends PersistentActor with ActorLogging {
   override def persistenceId: String = "first"
@@ -10,7 +15,13 @@ class ActorUsingFirstPlugin extends PersistentActor with ActorLogging {
 
   override def snapshotPluginId = "first-snapshot-store"
 
+  implicit val executionContext = context.system.dispatcher
+  implicit val materializer = ActorMaterializer()
+
   var value: Int = 0
+
+  val cassandraQueries = PersistenceQuery(context.system)
+    .readJournalFor[CassandraReadJournal]("first-query-journal")
 
   override def receiveRecover: Receive = {
     case evt: JournalEvent =>
@@ -24,6 +35,13 @@ class ActorUsingFirstPlugin extends PersistentActor with ActorLogging {
   override def receiveCommand: Receive = {
     case e: JournalEvent =>
       persist(e)(updateState)
+    case c: ReadJournalCommand =>
+      cassandraQueries
+        .currentEventsByPersistenceId(persistenceId, Long.MinValue, Long.MaxValue)
+        .runWith(Sink.seq)
+        .mapTo[Seq[EventEnvelope]]
+        .map(s => JournalEvents(s.map(e => e.event.asInstanceOf[JournalEvent])))
+        .pipeTo(sender())
   }
 
   private def updateState: (JournalEvent => Unit) = {

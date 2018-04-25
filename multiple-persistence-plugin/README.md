@@ -1,2 +1,2 @@
-# read journal events
+# multiple persistence plugins
 

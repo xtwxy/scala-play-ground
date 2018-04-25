@@ -4,7 +4,7 @@ import akka.actor._
 import akka.persistence._
 
 class ActorUsingDefaultPlugin extends PersistentActor with ActorLogging {
-  override def persistenceId: String = "first"
+  override def persistenceId: String = "default"
 
   var value: Int = 0
 

@@ -1,4 +1,4 @@
-require(["jquery", "./one", "./two"], function($, one, two) {
+require(["jquery", "one", "two"], function($, one, two) {
     one.hi();
     two.hi('world');
 

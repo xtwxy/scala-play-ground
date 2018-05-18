@@ -1,0 +1,14 @@
+@(title: String, webJarsUtil: org.webjars.play.WebJarsUtil)(content: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WebJars Test</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+</head>
+<body>
+@content
+@Html(webJarsUtil.requireJs(routes.Assets.versioned("javascripts/main.js")))
+</body>
+</html>

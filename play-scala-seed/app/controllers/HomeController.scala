@@ -18,7 +18,8 @@ import scala.concurrent.{ExecutionContext, Future}
  */
 @Singleton
 class HomeController @Inject()(cc: ControllerComponents,
-                               @Named("music-actor") musicActor: ActorRef)(implicit ec: ExecutionContext)
+                               @Named("music-actor") musicActor: ActorRef,
+                               indexTemplate: views.html.index)(implicit ec: ExecutionContext)
   extends AbstractController(cc) with MusicJsonSupport {
 
   implicit val timeout: Timeout = 5.seconds
@@ -30,7 +31,11 @@ class HomeController @Inject()(cc: ControllerComponents,
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
-  def index() = Action.async { implicit request: Request[AnyContent] =>
+  def index() = Action {
+    Ok(indexTemplate.render())
+  }
+
+  def getMusic() = Action.async { implicit request: Request[AnyContent] =>
     (musicActor ? "Do something").mapTo[List[MusicVo]].map { musics =>
       Ok(Json.toJson(musics))
     }

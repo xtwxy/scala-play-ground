@@ -1,0 +1,8 @@
+@this(webJarsUtil: org.webjars.play.WebJarsUtil)
+
+@webjars("Welcome to Play") {
+
+<ul class="easyui-tree" data-options="url:'tree'"></ul>
+@Html(webJarsUtil.requireJs(routes.Assets.versioned("javascripts/tree.js")))
+
+}

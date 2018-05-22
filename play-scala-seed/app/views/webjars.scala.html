@@ -1,4 +1,4 @@
-@(title: String, webJarsUtil: org.webjars.play.WebJarsUtil)(content: Html)
+@(title: String)(content: Html)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +9,5 @@
 </head>
 <body>
 @content
-@Html(webJarsUtil.requireJs(routes.Assets.versioned("javascripts/main.js")))
 </body>
 </html>

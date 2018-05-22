@@ -1,11 +1,12 @@
 @this(webJarsUtil: org.webjars.play.WebJarsUtil)
 
-@webjars("Welcome to Play", webJarsUtil) {
+@webjars("Welcome to Play") {
   <h1>Welcome to Play!</h1>
 <form action="#" method="get" enctype="application/x-www-form-urlencoded">
   <input id="id" value="initial value..."/>
   <input type='button' value='Add' id='btnAddProfile'>
   <button id="submit"><span id="submit-label">Submit</span></button>
 </form>
+@Html(webJarsUtil.requireJs(routes.Assets.versioned("javascripts/main.js")))
 
 }

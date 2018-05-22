@@ -18,3 +18,25 @@ ALTER TABLE music ADD CONSTRAINT music_music_type_fk FOREIGN KEY (music_type) RE
 INSERT INTO music(music_id, music_type, music_name, music_composer) values(1, 0, 'Fur Elise', 'Ludwig van Beethoven');
 INSERT INTO music(music_id, music_type, music_name, music_composer) values(2, 0, 'Symphony in C', 'Georges Bizet');
 
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+--  Table structure for `nodes`
+-- ----------------------------
+DROP TABLE IF EXISTS `tree`;
+CREATE TABLE `tree` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `parentId` bigint DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `nodes`
+-- ----------------------------
+BEGIN;
+INSERT INTO `tree` VALUES ('1', '0', 'Node 1'), ('2', '0', 'Node 2'), ('3', '0', 'Node 3'), ('4', '0', 'Node 4'), ('5', '1', 'Node 1.1'), ('6', '1', 'Node 1.2'), ('7', '5', 'Node 1.1.1'), ('8', '5', 'Node 1.1.2'), ('9', '5', 'Node 1.1.3');
+COMMIT;
+
+SET FOREIGN_KEY_CHECKS = 1;

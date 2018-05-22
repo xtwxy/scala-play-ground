@@ -56,3 +56,9 @@ message Child {
         SecondChild alice = 3;
     }
 }
+
+message TreeVo {
+    optional int64 id = 1;
+    optional int64 parentId = 2;
+    optional string name = 3;
+}

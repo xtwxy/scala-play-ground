@@ -29,4 +29,8 @@ class TreeController @Inject()(cc: ControllerComponents,
   def tree(parentId: Long) = Action { implicit request =>
     Ok(Json.toJson(treeDAO.selectTreeNodesByParentId(parentId)))
   }
+
+  def post() = Action { implicit request =>
+    Ok(Json.toJson(Map("hello" -> "world")))
+  }
 }

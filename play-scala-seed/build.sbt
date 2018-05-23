@@ -18,7 +18,6 @@ libraryDependencies ++=
     playSlick,
     mysqlDriver,
     webjarsPlay,
-    webjarsJquery,
     webjarsEasyUI,
     webjarsRequireJS,
     scalapbRuntime % "protobuf",

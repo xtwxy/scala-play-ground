@@ -8,6 +8,7 @@ GET     /                           controllers.HomeController.index
 GET     /getMusic                   controllers.HomeController.getMusic
 POST    /music                      controllers.HomeController.music
 GET     /tree_view                  controllers.TreeController.index
+POST    /post                       controllers.TreeController.post
 GET     /tree                       controllers.TreeController.tree(parentId: Long ?= 0)
 
 # Map static resources from the /public folder to the /assets URL path

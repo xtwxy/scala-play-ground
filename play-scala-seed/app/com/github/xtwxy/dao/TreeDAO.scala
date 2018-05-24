@@ -15,6 +15,10 @@ object TreeDAO {
       case id ~ parentId ~ name => TreeVo(Some(id), Some(parentId), Some(name))
     }
   }
+
+  val nodeCount: RowParser[Long] = {
+    get[Long]("nodeCount")
+  }
 }
 
 @Singleton class TreeDAO @Inject()(@NamedDatabase("music") database: Database) {
@@ -22,5 +26,11 @@ object TreeDAO {
     SQL("SELECT id, parentId, name from tree where parentId = {parentId}")
       .on("parentId" -> parentId)
       .as(TreeDAO.tree.*)
+  }
+
+  def selectTreeNodeCountByParentId(parentId: Long): Long = database.withTransaction { implicit c =>
+    SQL("SELECT count(parentId) as nodeCount from tree where parentId = {parentId}")
+      .on("parentId" -> parentId)
+      .as(TreeDAO.nodeCount.single)
   }
 }

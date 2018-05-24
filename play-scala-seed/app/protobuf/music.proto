@@ -55,10 +55,17 @@ message Child {
         FirstChild bob = 2;
         SecondChild alice = 3;
     }
-}
+};
 
 message TreeVo {
     optional int64 id = 1;
     optional int64 parentId = 2;
     optional string name = 3;
-}
+};
+
+message TreeNodeVo {
+    optional int64 id = 1;
+    optional string text = 2;
+    optional string state = 3;
+};
+

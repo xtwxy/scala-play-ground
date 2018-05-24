@@ -15,26 +15,14 @@ import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class TreeController @Inject()(cc: ControllerComponents,
-                               treeDAO: TreeDAO,
-                               indexTemplate: views.html.tree)(implicit ec: ExecutionContext)
+class CrudController @Inject()(cc: ControllerComponents,
+                               indexTemplate: views.html.crud)(implicit ec: ExecutionContext)
   extends AbstractController(cc) with MusicJsonSupport {
 
   implicit val timeout: Timeout = 5.seconds
 
   def index() = Action {
     Ok(indexTemplate.render())
-  }
-
-  def tree(id: Long) = Action { implicit request =>
-    println(s"id = ${id}")
-    val nodes = treeDAO.selectTreeNodesByParentId(id)
-      .map(t => TreeNodeVo(
-        t.id,
-        t.name,
-        t.id.map(x => if(treeDAO.selectTreeNodeCountByParentId(x) > 0) "closed" else "open")
-      ))
-    Ok(Json.toJson(nodes))
   }
 
   def post() = Action { implicit request =>

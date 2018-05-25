@@ -23,6 +23,11 @@ require(["jquery", "jquery-easyui"], function($, easyui) {
 		});
 
 	$('#saveUser').on('click', function(){
+	        var inputs = $("#fm input");
+	        for(var i = 0; i < inputs.length; i++) {
+	            if(inputs[i].name !== undefined && inputs[i].name != '')
+	            console.log(inputs[i].name + " = " + inputs[i].value);
+	        }
 			$('#fm').form('submit',{
 				url: url,
 				onSubmit: function(){

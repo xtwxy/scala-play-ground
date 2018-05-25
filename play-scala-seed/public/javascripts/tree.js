@@ -3,7 +3,13 @@ require(["jquery", "jquery-easyui"], function($, easyui) {
         url: 'tree',
         method: 'get',
         loader: function(param,success,error) {
-            $.get('tree', param, success).fail(error);
+            $.get('tree', param, success).fail(function(err){
+        		$.messager.show({
+        			title: 'Error',
+        			msg: err.statusText
+        		});
+                error(err);
+            });
         }
     });
 

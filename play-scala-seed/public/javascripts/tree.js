@@ -1,4 +1,11 @@
 require(["jquery", "jquery-easyui"], function($, easyui) {
+    $('#tree-node').tree({
+        url: 'tree',
+        method: 'get',
+        loader: function(param,success,error) {
+            $.get('tree', param, success).fail(error);
+        }
+    });
 		var url = 'post';
 	$('#newUser').on('click', function(){
 			$('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');

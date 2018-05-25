@@ -26,6 +26,9 @@ class CrudController @Inject()(cc: ControllerComponents,
   }
 
   def post() = Action { implicit request =>
-    Ok(Json.toJson(Map("hello" -> "world")))
+    Ok(Json.toJson(Seq(
+      Map("id" -> "1", "firstname" -> "hello1", "lastname" -> "world", "phone" -> "12345678", "email" -> "abc@def.com"),
+      Map("id" -> "2", "firstname" -> "hello2", "lastname" -> "world", "phone" -> "12345678", "email" -> "abc@def.com")
+    )))
   }
 }

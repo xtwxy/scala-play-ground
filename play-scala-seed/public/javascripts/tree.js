@@ -6,11 +6,11 @@ require(["jquery", "jquery-easyui"], function($, easyui) {
             $.get('tree', param, success).fail(error);
         }
     });
-		var url = 'post';
+
+    var url = 'post';
 	$('#newUser').on('click', function(){
 			$('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');
 			$('#fm').form('clear');
-			url = 'http://localhost:9000/post';
 		});
 
 	$('#editUser').on('click', function(){
@@ -29,7 +29,6 @@ require(["jquery", "jquery-easyui"], function($, easyui) {
 					return $(this).form('validate');
 				},
 				success: function(result){
-				    alert(result);
 					var result = eval('('+result+')');
 					if (result.errorMsg){
 						$.messager.show({

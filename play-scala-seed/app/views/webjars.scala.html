@@ -1,5 +1,4 @@
-@(title: String)(content: Html)
-
+@(title: String, webJarsUtil: org.webjars.play.WebJarsUtil)(content: Html)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,10 @@
     <title>WebJars Test</title>
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+
+    @Html(webJarsUtil.css("github-com-novaeye-jquery-easyui-bower", "themes/default/easyui.css"))
+    @Html(webJarsUtil.css("github-com-novaeye-jquery-easyui-bower", "themes/color.css"))
+    @Html(webJarsUtil.css("github-com-novaeye-jquery-easyui-bower", "themes/icon.css"))
 </head>
 <body>
 @content

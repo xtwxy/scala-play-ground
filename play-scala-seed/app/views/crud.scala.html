@@ -1,10 +1,6 @@
 @this(webJarsUtil: org.webjars.play.WebJarsUtil)
 
-@webjars("Welcome to Play") {
-
-@Html(webJarsUtil.css("github-com-novaeye-jquery-easyui-bower", "themes/default/easyui.css"))
-@Html(webJarsUtil.css("github-com-novaeye-jquery-easyui-bower", "themes/color.css"))
-@Html(webJarsUtil.css("github-com-novaeye-jquery-easyui-bower", "themes/icon.css"))
+@webjars("Welcome to Play", webJarsUtil) {
 
 <div style="border: 1px solid red">
     <ul id="tree-node"></ul>

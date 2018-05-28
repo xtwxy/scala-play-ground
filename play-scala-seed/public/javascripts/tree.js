@@ -1,4 +1,5 @@
-require(["jquery", "jquery-easyui"], function($, easyui) {
+require([], function() {
+
     $('#tree-node').tree({
         url: 'tree',
         method: 'get',

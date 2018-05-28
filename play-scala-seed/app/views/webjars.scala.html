@@ -1,15 +1,19 @@
 @(title: String, webJarsUtil: org.webjars.play.WebJarsUtil)(content: Html)
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh_CN">
 <head>
     <meta charset="UTF-8">
     <title>WebJars Test</title>
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
 
+    @Html(webJarsUtil.script("jquery", "dist/jquery.min.js"))
+    @Html(webJarsUtil.script("jquery-i18n-properties", "jquery.i18n.properties.min.js"))
     @Html(webJarsUtil.css("github-com-novaeye-jquery-easyui-bower", "themes/default/easyui.css"))
     @Html(webJarsUtil.css("github-com-novaeye-jquery-easyui-bower", "themes/color.css"))
     @Html(webJarsUtil.css("github-com-novaeye-jquery-easyui-bower", "themes/icon.css"))
+    @Html(webJarsUtil.script("github-com-novaeye-jquery-easyui-bower", "jquery.easyui.min.js"))
+    @Html(webJarsUtil.script("github-com-novaeye-jquery-easyui-bower", "locale/easyui-lang-zh_CN.js"))
 </head>
 <body>
 @content

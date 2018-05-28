@@ -30,6 +30,7 @@ object Dependencies {
   lazy val play            = "com.typesafe.play"         %%  "play"                                % playVersion
   lazy val webjarsPlay     = "org.webjars"               %%  "webjars-play"                        % "2.6.1"
   lazy val webjarsJquery   = "org.webjars"               %   "jquery"                              % "3.2.1"
+  lazy val webjarsJqueryI18n= "org.webjars.bower"        % "jquery-i18n-properties"                % "1.2.7"
   lazy val webjarsRequireJS = "org.webjars"              % "requirejs"                             % "2.3.5"
   lazy val webjarsEasyUI   = "org.webjars.bower"         % "github-com-novaeye-jquery-easyui-bower" % "1.5.0.1"
   lazy val playTest        = "com.typesafe.play"         %%  "play-test"                           % playVersion

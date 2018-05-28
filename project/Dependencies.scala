@@ -33,6 +33,7 @@ object Dependencies {
   lazy val webjarsJqueryI18n= "org.webjars.bower"        % "jquery-i18n-properties"                % "1.2.7"
   lazy val webjarsRequireJS = "org.webjars"              % "requirejs"                             % "2.3.5"
   lazy val webjarsEasyUI   = "org.webjars.bower"         % "github-com-novaeye-jquery-easyui-bower" % "1.5.0.1"
+  lazy val webjarsYUI      = "org.webjars"               % "yui"                                   % "3.18.1"
   lazy val playTest        = "com.typesafe.play"         %%  "play-test"                           % playVersion
   lazy val playSilhouetteTest =  "com.mohiva"                %%  "play-silhouette-testkit"             % playSilhouetteVersion
   lazy val akkaMultiNodeTestKit = "com.typesafe.akka"         %%  "akka-multi-node-testkit"             % akkaVersion

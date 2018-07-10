@@ -1,7 +1,7 @@
 import com.trueaccord.scalapb.compiler.Version.scalapbVersion
 import Dependencies._
 
-name         := "play-scala-seed"
+name         := "musicdb"
 scalaVersion := scalaVersionNumber
 organization := groupName
 version      := artifactVersionNumber
@@ -12,8 +12,20 @@ scalaVersion := "2.12.3"
 
 libraryDependencies ++=
   Seq(
-    groupName %% "musicdb" % artifactVersionNumber,
+    guice,
+    jdbc,
+    playAnorm,
+    playSlick,
+    mysqlDriver,
+    webjarsPlay,
+    webjarsJqueryI18n,
+    webjarsEasyUI,
+    scalapbRuntime % "protobuf",
     scalaTestPlusPlay % Test
   )
+
+PB.targets in Compile := Seq(
+  scalapb.gen() -> (sourceManaged in Compile).value
+)
 
 publishTo := localRepo

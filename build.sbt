@@ -27,6 +27,7 @@ lazy val root = (project in file("."))
     word_count,
     play_scala_starter,
     play_java_seed,
+    musicdb,
     play_scala_seed
   )
 
@@ -54,5 +55,8 @@ lazy val play_scala_starter= (project in file("play-scala-starter-example"))
 lazy val play_java_seed    = (project in file("play-java-seed"))
   .enablePlugins(PlayJava)
 lazy val play_scala_seed   = (project in file("play-scala-seed"))
+  .enablePlugins(PlayScala)
+lazy val musicdb           = (project in file("musicdb"))
   .enablePlugins(PlayScala, RoutesCompiler)
+
 

@@ -1,7 +1,7 @@
 addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.9")
 
-//libraryDependencies += "com.trueaccord.scalapb" %% "compilerplugin" % "0.6.2"
-//addSbtPlugin("com.thesamet" % "sbt-protoc" % "0.99.11")
+libraryDependencies += "com.trueaccord.scalapb" %% "compilerplugin" % "0.6.2"
+addSbtPlugin("com.thesamet" % "sbt-protoc" % "0.99.11")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.0")
 addSbtPlugin("com.typesafe.sbt" % "sbt-multi-jvm" % "0.3.8")

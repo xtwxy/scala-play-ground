@@ -54,5 +54,5 @@ lazy val play_scala_starter= (project in file("play-scala-starter-example"))
 lazy val play_java_seed    = (project in file("play-java-seed"))
   .enablePlugins(PlayJava)
 lazy val play_scala_seed   = (project in file("play-scala-seed"))
-  .enablePlugins(PlayScala, PlayAkkaHttp2Support)
+  .enablePlugins(PlayScala, RoutesCompiler)
 

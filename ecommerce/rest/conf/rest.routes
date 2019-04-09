@@ -1,0 +1,6 @@
+######################################################
+## This file is 100% ***GENERATED***, DO NOT EDIT!  ##
+######################################################
+
+->      /product                     com.apuex.sales.router.ProductRouter
+->      /order                       com.apuex.sales.router.OrderRouter

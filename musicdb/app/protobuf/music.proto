@@ -29,14 +29,14 @@ message Parent {
 
 message Derived1 {
     extend Parent {
-        optional string extended = 2;
+        optional Derived1 extended = 2;
     }
     optional string name = 1;
 };
 
 message Derived2 {
     extend Parent {
-        optional string extended = 3;
+        optional Derived2 extended = 3;
     }
     optional string name = 1;
 };

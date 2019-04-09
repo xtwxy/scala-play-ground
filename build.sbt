@@ -28,6 +28,7 @@ lazy val root = (project in file("."))
     play_scala_starter,
     play_java_seed,
     musicdb,
+    scala_native_hello,
     play_scala_seed
   )
 
@@ -48,7 +49,7 @@ lazy val stream_quickstart = (project in file("stream-quickstart"))
 lazy val stream_tweet      = (project in file("stream-tweet"))
 lazy val simple_xml        = (project in file("simple-xml"))
 lazy val word_count        = (project in file("word-count"))
-//lazy val scala_native_hello= (project in file("scala-native-hello"))
+lazy val scala_native_hello= (project in file("scala-native-hello"))
 lazy val play_scala_starter= (project in file("play-scala-starter-example"))
   .enablePlugins(PlayScala)
 

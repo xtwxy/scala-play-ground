@@ -31,7 +31,7 @@ object Main extends App {
     .andThen({
       case Success(journalEvents) =>
         println("JournalEvents: {} total.", journalEvents.events.length)
-        journalEvents.events.foreach(println)
+        journalEvents.events.foreach(e => printf("(%s, %s, %s, %s)\n", e.id, e.ts.get.seconds, e.ts.get.nanos, e.value))
         system.terminate()
       case Failure(exception) =>
         println(exception)

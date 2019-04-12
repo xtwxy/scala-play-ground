@@ -26,6 +26,10 @@ class WriteJournalActor extends PersistentActor
   val cassandraQueries = PersistenceQuery(context.system)
     .readJournalFor[CassandraReadJournal](CassandraReadJournal.Identifier)
 
+  cassandraQueries
+    .eventsByPersistenceId(persistenceId, Long.MinValue, Long.MaxValue)
+    .runWith(Sink.foreach(e => printf("(%s, %s, %s, %s)\n", e.persistenceId, e.offset, e.sequenceNr, e.event.getClass.getName)))
+
   override def receiveRecover: Receive = {
     case e: JournalEvent =>
       updateState(e)

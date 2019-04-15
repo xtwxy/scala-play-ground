@@ -5,7 +5,9 @@ scalaVersion := scalaVersionNumber
 organization := groupName
 version      := artifactVersionNumber
 
-lazy val socketio_hello = (project in file(".")).enablePlugins(PlayScala)
+lazy val socketio_hello = (project in file("."))
+  .enablePlugins(GraalVMNativeImagePlugin)
+  .enablePlugins(PlayScala)
 
 libraryDependencies ++= {
   Seq(

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "0001",
+    "children": {
+      "bob": {
+        "title": "bastard"
+      }
+    }
+  },
+  {
+    "id": "0002",
+    "children": {
+      "alice": {
+        "caption": "another bastard"
+      }
+    }
+  },
+  {
+    "id": "0003",
+    "children": {
+      "alice": {
+        "caption": "another bastard"
+      }
+    }
+  }
+]

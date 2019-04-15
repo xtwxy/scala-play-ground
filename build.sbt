@@ -28,7 +28,7 @@ lazy val root = (project in file("."))
     play_scala_starter,
     play_java_seed,
     musicdb,
-    scala_native_hello,
+    `scala-native-hello`,
     play_scala_seed
   )
 
@@ -38,9 +38,11 @@ lazy val cluster_event  = (project in file("cluster-event"))
 lazy val read_journal_cassandra  = (project in file("read-journal-cassandra"))
 lazy val multiple_persistence_plugin = (project in file("multiple-persistence-plugin"))
 lazy val read_journal_leveldb  = (project in file("read-journal-leveldb"))
+  .enablePlugins(GraalVMNativeImagePlugin)
 lazy val tcp_client        = (project in file("tcp-client"))
 lazy val tcp_server        = (project in file("tcp-server"))
 lazy val socketio_hello    = (project in file("socket.io-hello"))
+  .enablePlugins(GraalVMNativeImagePlugin)
   .enablePlugins(PlayScala)
 lazy val stream_actor      = (project in file("stream-actor"))
 lazy val stream_cassandra  = (project in file("stream-cassandra"))
@@ -49,8 +51,10 @@ lazy val stream_quickstart = (project in file("stream-quickstart"))
 lazy val stream_tweet      = (project in file("stream-tweet"))
 lazy val simple_xml        = (project in file("simple-xml"))
 lazy val word_count        = (project in file("word-count"))
-lazy val scala_native_hello= (project in file("scala-native-hello"))
+lazy val `scala-native-hello` = (project in file("scala-native-hello"))
 lazy val play_scala_starter= (project in file("play-scala-starter-example"))
+  .enablePlugins(PlayScala)
+lazy val `play-scala-websocket` = (project in file("play-scala-websocket"))
   .enablePlugins(PlayScala)
 
 lazy val play_java_seed    = (project in file("play-java-seed"))

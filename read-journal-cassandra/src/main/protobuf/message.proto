@@ -21,3 +21,18 @@ message JournalEvent {
 message JournalEvents {
     repeated JournalEvent events = 1;
 };
+
+message DeliverJournalEvent {
+    int64 deliveryId = 1;
+    string id = 2;
+    google.protobuf.Timestamp ts = 3;
+    int32 value = 4;
+}
+
+message ConfirmDeliveryCommand {
+    int64 deliveryId = 1;
+}
+
+message DeliveryConfirmedEvent {
+    int64 deliveryId = 1;
+}

@@ -14,7 +14,11 @@ object Main extends App {
   val system = ActorSystem("system")
   implicit val executionContext = system.dispatcher
   implicit val requestTimeout: Timeout = FiniteDuration(20, SECONDS)
-  val journalActor = system.actorOf(Props(classOf[WriteJournalActor]), WriteJournalActor.name)
+  val destinationActor = system.actorOf(MyDestinationActor.props)
+  val journalActor = system.actorOf(
+    WriteJournalActor.props(system.actorSelection(destinationActor.path)),
+    WriteJournalActor.name
+  )
 
   val events = (1 to 5).map(x => {
     val timestamp = new Date()

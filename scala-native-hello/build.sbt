@@ -10,6 +10,6 @@ enablePlugins(ScalaNativePlugin)
 libraryDependencies ++=
   Seq(
     //scalaXml,
-    "com.outr" %%% "reactify" % "3.0.3"
+    "com.outr" %% "reactify" % "3.0.3"
   )
 

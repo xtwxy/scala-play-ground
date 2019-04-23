@@ -9,12 +9,12 @@ import akka.stream.ActorMaterializer
 import akka.stream.scaladsl._
 
 object WriteJournalActor {
-  def props: Props = Props(classOf[WriteJournalActor])
+  def props(destination: ActorSelection): Props = Props(new WriteJournalActor(destination))
 
   def name: String = "write-journal-actor"
 }
 
-class WriteJournalActor extends PersistentActor
+class WriteJournalActor(destination: ActorSelection) extends AtLeastOnceDelivery
   with ActorLogging {
   implicit val executionContext = context.system.dispatcher
   implicit val materializer = ActorMaterializer()
@@ -33,6 +33,8 @@ class WriteJournalActor extends PersistentActor
   override def receiveRecover: Receive = {
     case e: JournalEvent =>
       updateState(e)
+    case e: DeliveryConfirmedEvent =>
+      updateState(e)
     case SnapshotOffer(metadata: SnapshotMetadata, snapshot: Any) =>
     case _: RecoveryCompleted =>
     case x =>
@@ -49,13 +51,19 @@ class WriteJournalActor extends PersistentActor
         .pipeTo(sender())
     case e: JournalEvent =>
       persist(e)(updateState)
+    case c: ConfirmDeliveryCommand =>
+      persist(DeliveryConfirmedEvent(c.deliveryId))(updateState)
     case x =>
       log.info("unhandled: {}", x)
   }
 
-  private def updateState: (JournalEvent => Unit) = {
+  private def updateState: (Any => Unit) = {
     case e: JournalEvent =>
       value += e.value
+      deliver(destination)(deliveryId => DeliverJournalEvent(deliveryId, e.id, e.ts, e.value))
+    case e: DeliveryConfirmedEvent =>
+      log.info("confirmed: {}", e.deliveryId)
+      confirmDelivery(e.deliveryId)
     case x =>
       log.info("unhandled: {}", x)
   }

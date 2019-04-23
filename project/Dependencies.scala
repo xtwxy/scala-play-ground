@@ -1,5 +1,5 @@
 import sbt._
-import com.trueaccord.scalapb.compiler.Version.scalapbVersion
+import scalapb.compiler.Version.scalapbVersion
 
 object Dependencies {
   lazy val scalaVersionNumber    = "2.12.4"
@@ -49,8 +49,8 @@ object Dependencies {
   lazy val mysqlDriver     = "mysql"                     %   "mysql-connector-java"                % "6.0.6"
   lazy val jgraphtCore     = "org.jgrapht"               %   "jgrapht-core"                        % "1.1.0"
   lazy val h2              = "com.h2database"            %   "h2"                                  % "1.4.196"
-  lazy val scalapbCompiler = "com.trueaccord.scalapb"    %% "compilerplugin"                       % scalapbVersion
-  lazy val scalapbRuntime  = "com.trueaccord.scalapb"    %% "scalapb-runtime"                      % scalapbVersion
+  lazy val scalapbCompiler = "com.thesamet.scalapb"      %% "compilerplugin"                       % scalapbVersion
+  lazy val scalapbRuntime  = "com.thesamet.scalapb"      %% "scalapb-runtime"                      % scalapbVersion
 
   lazy val slf4jApi        = "org.slf4j"                 %  "slf4j-api"                            % "1.7.25"
   lazy val slf4jSimple     = "org.slf4j"                 %  "slf4j-simple"                         % "1.7.25"

@@ -12,9 +12,9 @@ lazy val root = (project in file("."))
     jodatime,
     actor_mixed_java,
     cluster_event,
-    read_journal_cassandra,
+    `read-journal-cassandra`,
     multiple_persistence_plugin,
-    read_journal_leveldb,
+    `read-journal-leveldb`,
     tcp_client,
     tcp_server,
     socketio_hello,
@@ -35,9 +35,9 @@ lazy val root = (project in file("."))
 lazy val jodatime          = (project in file("joda-time-pg"))
 lazy val actor_mixed_java  = (project in file("actor-mixed-java"))
 lazy val cluster_event  = (project in file("cluster-event"))
-lazy val read_journal_cassandra  = (project in file("read-journal-cassandra"))
+lazy val `read-journal-cassandra`  = (project in file("read-journal-cassandra"))
 lazy val multiple_persistence_plugin = (project in file("multiple-persistence-plugin"))
-lazy val read_journal_leveldb  = (project in file("read-journal-leveldb"))
+lazy val `read-journal-leveldb`  = (project in file("read-journal-leveldb"))
   .enablePlugins(GraalVMNativeImagePlugin)
 lazy val tcp_client        = (project in file("tcp-client"))
 lazy val tcp_server        = (project in file("tcp-server"))

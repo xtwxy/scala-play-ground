@@ -1,7 +1,7 @@
 import Dependencies._
 import sbtassembly.MergeStrategy
 
-name         := "read-journal"
+name         := "read-journal-cassandra"
 scalaVersion := scalaVersionNumber
 organization := groupName
 version      := artifactVersionNumber

@@ -11,7 +11,7 @@ import akka.stream.scaladsl._
 object WriteJournalActor {
   def props(destination: ActorSelection): Props = Props(new WriteJournalActor(destination))
 
-  def name: String = "write-journal-actor"
+  def name: String = "write-journal-actor-v1.0.0"
 }
 
 class WriteJournalActor(destination: ActorSelection) extends AtLeastOnceDelivery
@@ -27,7 +27,8 @@ class WriteJournalActor(destination: ActorSelection) extends AtLeastOnceDelivery
     .readJournalFor[CassandraReadJournal](CassandraReadJournal.Identifier)
 
   cassandraQueries
-    .eventsByPersistenceId(persistenceId, Long.MinValue, Long.MaxValue)
+    .persistenceIds()
+    .flatMapConcat(s => cassandraQueries.eventsByPersistenceId(s, Long.MinValue, Long.MaxValue))
     .runWith(Sink.foreach(e => printf("(%s, %s, %s, %s)\n", e.persistenceId, e.offset, e.sequenceNr, e.event.getClass.getName)))
 
   override def receiveRecover: Receive = {
@@ -38,7 +39,7 @@ class WriteJournalActor(destination: ActorSelection) extends AtLeastOnceDelivery
     case SnapshotOffer(metadata: SnapshotMetadata, snapshot: Any) =>
     case _: RecoveryCompleted =>
     case x =>
-      log.info("unhandled: {}", x)
+      log.info("unhandled recover message: {}", x)
   }
 
   override def receiveCommand: Receive = {
@@ -47,14 +48,17 @@ class WriteJournalActor(destination: ActorSelection) extends AtLeastOnceDelivery
         .currentEventsByPersistenceId(persistenceId, Long.MinValue, Long.MaxValue)
         .runWith(Sink.seq)
         .mapTo[Seq[EventEnvelope]]
-        .map(s => JournalEvents(s.map(e => e.event.asInstanceOf[JournalEvent])))
+        .map(s => JournalEvents(
+          s.filter(e => e.event.isInstanceOf[JournalEvent])
+          .map(e => e.event.asInstanceOf[JournalEvent])
+        ))
         .pipeTo(sender())
     case e: JournalEvent =>
       persist(e)(updateState)
     case c: ConfirmDeliveryCommand =>
       persist(DeliveryConfirmedEvent(c.deliveryId))(updateState)
     case x =>
-      log.info("unhandled: {}", x)
+      log.info("unhandled command: {}", x)
   }
 
   private def updateState: (Any => Unit) = {
@@ -65,6 +69,6 @@ class WriteJournalActor(destination: ActorSelection) extends AtLeastOnceDelivery
       log.info("confirmed: {}", e.deliveryId)
       confirmDelivery(e.deliveryId)
     case x =>
-      log.info("unhandled: {}", x)
+      log.info("unhandled update state: {}", x)
   }
 }

@@ -3,18 +3,19 @@ package com.github.xtwxy.scala.playground.journal.read
 import java.util.Date
 
 import akka.actor._
-import akka.pattern._
 import akka.util.Timeout
 import com.google.protobuf.timestamp._
 
 import scala.concurrent.duration._
-import scala.util._
 
 object Main extends App {
   val system = ActorSystem("system")
   implicit val executionContext = system.dispatcher
   implicit val requestTimeout: Timeout = FiniteDuration(20, SECONDS)
-  val destinationActor = system.actorOf(MyDestinationActor.props)
+  val destinationActor = system.actorOf(
+    MyDestinationActor.props,
+    MyDestinationActor.name
+  )
   val journalActor = system.actorOf(
     WriteJournalActor.props(system.actorSelection(destinationActor.path)),
     WriteJournalActor.name
@@ -30,15 +31,4 @@ object Main extends App {
   })
 
   events.foreach(x => journalActor ! x)
-  (journalActor ? ReadJournalCommand(WriteJournalActor.name, None))
-    .mapTo[JournalEvents]
-    .andThen({
-      case Success(journalEvents) =>
-        println("JournalEvents: {} total.", journalEvents.events.length)
-        journalEvents.events.foreach(println)
-        system.terminate()
-      case Failure(exception) =>
-        println(exception)
-        system.terminate()
-    })
 }

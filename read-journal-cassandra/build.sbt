@@ -14,6 +14,7 @@ libraryDependencies ++= {
     akkaPersistenceQuery,
     akkaPersistenceCassandra,
     akkaPersistenceCassandraLauncher,
+    protoSerializer,
     scalapbCompiler,
     scalapbRuntime % "protobuf",
     slf4jApi,

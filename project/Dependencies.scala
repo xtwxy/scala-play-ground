@@ -51,6 +51,7 @@ object Dependencies {
   lazy val h2              = "com.h2database"            %   "h2"                                  % "1.4.196"
   lazy val scalapbCompiler = "com.thesamet.scalapb"      %% "compilerplugin"                       % scalapbVersion
   lazy val scalapbRuntime  = "com.thesamet.scalapb"      %% "scalapb-runtime"                      % scalapbVersion
+  lazy val protoSerializer = "com.github.apuex.protobuf" %   "protobuf-serializer"                 % "1.0.0"
 
   lazy val slf4jApi        = "org.slf4j"                 %  "slf4j-api"                            % "1.7.25"
   lazy val slf4jSimple     = "org.slf4j"                 %  "slf4j-simple"                         % "1.7.25"

@@ -4,14 +4,15 @@ import akka.actor._
 import akka.pattern._
 import akka.persistence._
 import akka.persistence.cassandra.query.scaladsl.CassandraReadJournal
+import akka.persistence.journal.Tagged
 import akka.persistence.query._
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl._
 
 object WriteJournalActor {
   def props(destination: ActorSelection): Props = Props(new WriteJournalActor(destination))
-
   def name: String = "write-journal-actor-v1.0.0"
+  def tag: String = "1.0.0"
 }
 
 class WriteJournalActor(destination: ActorSelection) extends AtLeastOnceDelivery
@@ -31,10 +32,18 @@ class WriteJournalActor(destination: ActorSelection) extends AtLeastOnceDelivery
     .flatMapConcat(s => cassandraQueries.eventsByPersistenceId(s, Long.MinValue, Long.MaxValue))
     .runWith(Sink.foreach(e => printf("(%s, %s, %s, %s)\n", e.persistenceId, e.offset, e.sequenceNr, e.event.getClass.getName)))
 
+  cassandraQueries
+    .eventsByTag(WriteJournalActor.tag, Offset.noOffset)
+    .runWith(Sink.foreach(e => printf("tagged(%s, %s, %s, %s)\n", e.persistenceId, e.offset, e.sequenceNr, e.event.getClass.getName)))
+
+  val tags = Set(WriteJournalActor.tag)
+
   override def receiveRecover: Receive = {
     case e: JournalEvent =>
       updateState(e)
     case e: DeliveryConfirmedEvent =>
+      updateState(e)
+    case Tagged(e, _) =>
       updateState(e)
     case SnapshotOffer(metadata: SnapshotMetadata, snapshot: Any) =>
     case _: RecoveryCompleted =>
@@ -54,11 +63,16 @@ class WriteJournalActor(destination: ActorSelection) extends AtLeastOnceDelivery
         ))
         .pipeTo(sender())
     case e: JournalEvent =>
-      persist(e)(updateState)
+      persist(Tagged(e, tags))(updateStateWithTagged)
     case c: ConfirmDeliveryCommand =>
-      persist(DeliveryConfirmedEvent(c.deliveryId))(updateState)
+      persist(Tagged(DeliveryConfirmedEvent(c.deliveryId), tags))(updateStateWithTagged)
     case x =>
       log.info("unhandled command: {}", x)
+  }
+
+  private def updateStateWithTagged: (Any => Unit) = {
+    case Tagged(e, _) => updateState(e)
+    case e => updateState(e)
   }
 
   private def updateState: (Any => Unit) = {

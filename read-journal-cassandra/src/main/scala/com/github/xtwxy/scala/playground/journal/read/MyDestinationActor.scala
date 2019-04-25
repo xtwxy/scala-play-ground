@@ -14,13 +14,11 @@ class MyDestinationActor extends PersistentActor
   with ActorLogging {
 
   override def receiveRecover: Receive = {
-    case e: DeliverJournalEvent =>
-      updateState(e)
-    case Tagged(e, _) => updateState(e)
     case SnapshotOffer(metadata: SnapshotMetadata, snapshot: Any) =>
     case _: RecoveryCompleted =>
+      log.info("recover complete.")
     case x =>
-      log.info("unhandled recover message: {}", x)
+      updateStateWithTagged(x)
   }
 
   override def receiveCommand: Receive = {
@@ -34,8 +32,12 @@ class MyDestinationActor extends PersistentActor
   override def persistenceId: String = self.path.name
 
   private def updateStateWithTagged: (Any => Unit) = {
-    case Tagged(e, _) => updateState(e)
-    case e => updateState(e)
+    case Tagged(e, _) =>
+      log.info("tagged event: {}", e)
+      updateState(e)
+    case e =>
+      log.info("untagged event: {}", e)
+      updateState(e)
   }
 
   private def updateState: (Any => Unit) = {
